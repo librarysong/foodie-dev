@@ -1,0 +1,19 @@
+package com.eat.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.annotations.ApiIgnore;
+
+/**
+ * @author weifei.song
+ * @date 2019/11/29 22:11
+ */
+@RestController
+@ApiIgnore
+public class HelloController {
+
+    @GetMapping("/hello")
+    public Object hello() {
+        return "HelloWorld";
+    }
+}
