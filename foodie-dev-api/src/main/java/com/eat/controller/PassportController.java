@@ -3,13 +3,18 @@ package com.eat.controller;
 import com.eat.pojo.Users;
 import com.eat.pojo.bo.UserBo;
 import com.eat.service.UserService;
+import com.eat.utils.CookieUtils;
 import com.eat.utils.IMOOCJSONResult;
+import com.eat.utils.JsonUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author weifei.song
@@ -63,7 +68,7 @@ public class PassportController {
 
     @PostMapping("/login")
     @ApiOperation(value = "用户登录")
-    public IMOOCJSONResult login(@RequestBody UserBo userBo) throws Exception {
+    public IMOOCJSONResult login(@RequestBody UserBo userBo, HttpServletRequest request, HttpServletResponse response) throws Exception {
         if (StringUtils.isBlank(userBo.getUserName())) {
             return IMOOCJSONResult.errorMsg("用户名不能为空");
         }
@@ -75,6 +80,9 @@ public class PassportController {
         if (user==null){
             return IMOOCJSONResult.errorMsg("用户名或密码不正确");
         }
+        user.setPassword(null);
+        user.setEmail(null);
+        CookieUtils.setCookie(request,response,"user", JsonUtils.objectToJson(user));
         return IMOOCJSONResult.ok(user);
     }
 
