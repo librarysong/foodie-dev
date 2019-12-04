@@ -1,8 +1,11 @@
 package com.eat.controller;
 
 import com.eat.enums.YesOrNo;
+import com.eat.mapper.CategoryMapper;
 import com.eat.pojo.Carousel;
+import com.eat.pojo.Category;
 import com.eat.service.CarouseService;
+import com.eat.service.CategoryService;
 import com.eat.utils.IMOOCJSONResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -24,10 +27,21 @@ public class IndexController {
     @Autowired
     private CarouseService carouseService;
 
+    @Autowired
+    private CategoryService CategoryService;
+
     @RequestMapping("/carousel")
     @ApiOperation(value = "获取首页轮播图")
     public IMOOCJSONResult carouseList() {
         List<Carousel> carouselList = carouseService.queryAll(YesOrNo.YES.type);
         return IMOOCJSONResult.ok(carouselList);
     }
+
+    @RequestMapping("/cats")
+    @ApiOperation(value = "获取商品分类(一级分类)")
+    public IMOOCJSONResult cats() {
+        List<Category> categoryList = CategoryService.queryAllRootLevelCat();
+        return IMOOCJSONResult.ok(categoryList);
+    }
+
 }
