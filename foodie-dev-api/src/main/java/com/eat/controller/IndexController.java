@@ -12,10 +12,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,14 +31,14 @@ public class IndexController {
     @Autowired
     private CategoryService categoryService;
 
-    @RequestMapping("/carousel")
+    @GetMapping(value = "/carousel")
     @ApiOperation(value = "获取首页轮播图")
     public IMOOCJSONResult carouseList() {
         List<Carousel> carouselList = carouseService.queryAll(YesOrNo.YES.type);
         return IMOOCJSONResult.ok(carouselList);
     }
 
-    @RequestMapping("/cats")
+    @GetMapping("/cats")
     @ApiOperation(value = "获取商品分类(一级分类)")
     public IMOOCJSONResult cats() {
         List<Category> categoryList = categoryService.queryAllRootLevelCat();
