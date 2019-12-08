@@ -76,7 +76,8 @@ public class AddressServiceImpl implements AddressService {
 
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
-    public void deleteUserAddress(String userId, String addressId) {
+    public void
+    deleteUserAddress(String userId, String addressId) {
 
         UserAddress address = new UserAddress();
         address.setId(addressId);
