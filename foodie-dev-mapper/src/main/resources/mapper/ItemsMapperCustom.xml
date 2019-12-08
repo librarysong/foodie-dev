@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.imooc.mapper.ItemsMapperCustom" >
+<mapper namespace="com.eat
+.mapper.ItemsMapperCustom" >
 
   <select id="queryItemComments" parameterType="Map" resultType="com.eat.pojo.vo.ItemCommentVO">
     SELECT
@@ -125,6 +126,7 @@
             <foreach collection="paramsList" index="index" item="specId" open="(" separator="," close=")">
               #{specId}
             </foreach>
+
     </select>
 
     <update id="decreaseItemSpecStock">

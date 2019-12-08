@@ -5,6 +5,7 @@ import com.eat.pojo.ItemsImg;
 import com.eat.pojo.ItemsParam;
 import com.eat.pojo.ItemsSpec;
 import com.eat.pojo.vo.CommentLevelCountsVO;
+import com.eat.pojo.vo.ShopcartVO;
 import com.eat.utils.PagedGridResult;
 
 import java.util.List;
@@ -59,4 +60,27 @@ public interface ItemService {
     public PagedGridResult queryPagedComments(String itemId, Integer level,
                                               Integer page, Integer pageSize);
 
+    /**
+     * 搜索商品列表
+     * @param keywords
+     * @param sort
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    public PagedGridResult searhItems(String keywords, String sort,
+                                      Integer page, Integer pageSize);
+
+    /**
+     * 根据分类id搜索商品列表
+     * @param catId
+     * @param sort
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    public PagedGridResult searhItems(Integer catId, String sort,
+                                      Integer page, Integer pageSize);
+
+    public List<ShopcartVO> queryItemsBySpecIds(String specIds);
 }
