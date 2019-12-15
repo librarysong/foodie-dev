@@ -30,8 +30,12 @@ public class OrdersController extends BaseController {
 
     final static Logger logger = LoggerFactory.getLogger(OrdersController.class);
 
-    @Autowired
     private OrderService orderService;
+
+    @Autowired
+    public void setOrderService(OrderService orderService) {
+        this.orderService = orderService;
+    }
 
     @Autowired
     private RestTemplate restTemplate;
